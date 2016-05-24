@@ -8,33 +8,51 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, MediaLoadState)
+{
+    MediaLoadStateUnknow,
+    MediaLoadStatePlaythroughOK,
+    MediaLoadStateStalled
+};
+
+typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
+{
+    MeidaPlaybackStateUnknow,
+    MeidaPlaybackStatePlay,
+    MeidaPlaybackStatePause,
+};
+
 @interface ZHPlayer : NSObject
 
-- (void)prepareToPlay;
+//- (void)prepareToPlay;
 - (void)play;
 - (void)pause;
-- (void)stop;
-- (BOOL)isPlaying;
-- (void)shutdown;
-- (void)setPauseInBackground:(BOOL)pause;
+//- (void)stop;
+//- (BOOL)isPlaying;
+//- (void)shutdown;
+//- (void)setPauseInBackground:(BOOL)pause;
+
+//是否自动播放
 
 - (void)initPlayerWith:(NSURL *)url;
 
+@property(nonatomic) BOOL shouldAutoplay;
 @property(nonatomic, readonly)  UIView *view;
-@property(nonatomic)            NSTimeInterval currentPlaybackTime;
+@property(nonatomic, readonly)  NSTimeInterval currentTime;
 @property(nonatomic, readonly)  NSTimeInterval duration;
 @property(nonatomic, readonly)  NSTimeInterval playableDuration;
-@property(nonatomic, readonly)  NSInteger bufferingProgress;
 
-@property(nonatomic, readonly)  BOOL isPreparedToPlay;
-//@property(nonatomic, readonly)  IJKMPMoviePlaybackState playbackState;
-//@property(nonatomic, readonly)  IJKMPMovieLoadState loadState;
+//@property(nonatomic, readonly)  BOOL isPreparedToPlay;
+@property(nonatomic, readonly)  MeidaPlaybackState playbackState;
+@property(nonatomic, readonly)  MediaLoadState loadState;
 
-@property(nonatomic, readonly) int64_t numberOfBytesTransferred;
-
-@property(nonatomic, readonly) CGSize naturalSize;
+//@property(nonatomic, readonly) int64_t numberOfBytesTransferred;
+//
+//@property(nonatomic, readonly) CGSize naturalSize;
 //@property(nonatomic) IJKMPMovieScalingMode scalingMode;
-@property(nonatomic) BOOL shouldAutoplay;
-
 
 @end
+
+extern NSString *const MediaPlaybackIsPreparedToPlayNotification;
+extern NSString *const MediaPlaybackStatusFailedNotification;
+extern NSString *const MeidaPlayerLoadStateDidChangeNotification;
