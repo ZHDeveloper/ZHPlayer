@@ -29,9 +29,9 @@ typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
 
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void(^)(BOOL finish))handeler;
 
-//是否自动播放
 - (void)initPlayerWith:(NSURL *)url;
 
+//是否自动播放
 @property(nonatomic) BOOL shouldAutoplay;
 
 //当shouldAutoplay为YES有效
@@ -46,10 +46,12 @@ typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
 @property(nonatomic, readonly)  NSTimeInterval playableDuration;
 
 @property(nonatomic, readonly)  MeidaPlaybackState playbackState;
+
 @property(nonatomic, readonly)  MediaLoadState loadState;
 
 @end
 
 extern NSString *const MediaPlaybackIsPreparedToPlayNotification;
 extern NSString *const MediaPlaybackStatusFailedNotification;
-extern NSString *const MeidaPlayerLoadStateDidChangeNotification;
+extern NSString *const MediaPlayerLoadStateDidChangeNotification;
+extern NSString *const MediaPlayerPlaybackDidFinishNotification;

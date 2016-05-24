@@ -124,7 +124,7 @@
             if (self.playerItem.playbackBufferEmpty)
             {
                 self.loadState = MediaLoadStateStalled;
-                [self postNotification:MeidaPlayerLoadStateDidChangeNotification];
+                [self postNotification:MediaPlayerLoadStateDidChangeNotification];
                 [self bufferingSomeSecond];
             }
         }
@@ -133,7 +133,7 @@
             if (self.playerItem.playbackLikelyToKeepUp && self.loadState == MediaLoadStateStalled)
             {
                 self.loadState = MediaLoadStatePlaythroughOK;
-                [self postNotification:MeidaPlayerLoadStateDidChangeNotification];
+                [self postNotification:MediaPlayerLoadStateDidChangeNotification];
             }
         }
         
@@ -175,6 +175,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:noti object:self];
 }
 
+#pragma mark - NSNotification
+- (void)moviePlayDidEnd:(NSNotification *)noti {
+    [self postNotification:MediaPlayerPlaybackDidFinishNotification];
+}
+
 #pragma mark - Getter&Setter
 - (void)setView:(UIView *)view {
     if (_view)
@@ -190,7 +195,7 @@
     if (_playerItem == playerItem) {return;}
     
     if (_playerItem) {
-//        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_playerItem];
         [_playerItem removeObserver:self forKeyPath:@"status"];
         [_playerItem removeObserver:self forKeyPath:@"loadedTimeRanges"];
         [_playerItem removeObserver:self forKeyPath:@"playbackBufferEmpty"];
@@ -199,7 +204,7 @@
     _playerItem = playerItem;
     
     if (playerItem) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayDidEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayDidEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
         [playerItem addObserver:self forKeyPath:@"status" options:NSKeyValueObservingOptionNew context:nil];
         [playerItem addObserver:self forKeyPath:@"loadedTimeRanges" options:NSKeyValueObservingOptionNew context:nil];
         // 缓冲区空了，需要等待数据
@@ -231,4 +236,5 @@
 
 NSString *const MediaPlaybackIsPreparedToPlayNotification = @"MediaPlaybackIsPreparedToPlayNotification";
 NSString *const MediaPlaybackStatusFailedNotification = @"MediaPlaybackStatusFailedNotification";
-NSString *const MeidaPlayerLoadStateDidChangeNotification = @"MeidaPlayerLoadStateDidChangeNotification";
+NSString *const MediaPlayerLoadStateDidChangeNotification = @"MediaPlayerLoadStateDidChangeNotification";
+NSString *const MediaPlayerPlaybackDidFinishNotification = @"MediaPlayerPlaybackDidFinishNotification";

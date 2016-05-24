@@ -35,7 +35,8 @@
 - (void)installNotifications {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlaybackIsPreparedToPlayNotification:) name:MediaPlaybackIsPreparedToPlayNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlaybackStatusFailedNotification:) name:MediaPlaybackStatusFailedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meidaPlayerLoadStateDidChangeNotification:) name:MeidaPlayerLoadStateDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meidaPlayerLoadStateDidChangeNotification:) name:MediaPlayerLoadStateDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerPlaybackDidFinishNotification:) name:MediaPlayerPlaybackDidFinishNotification object:nil];
 }
 
 - (void)removeNotifications {
@@ -65,6 +66,10 @@
         NSLog(@"缓冲完成！");
     }
     
+}
+
+- (void)mediaPlayerPlaybackDidFinishNotification:(NSNotification *)noti {
+    NSLog(@"播放结束");
 }
 
 #pragma mark - Action
@@ -103,6 +108,14 @@
 
 - (IBAction)pause:(id)sender {
     [self.player pause];
+}
+
+- (IBAction)sliderAction:(UISlider *)sender {
+    
+    [self.player seekToTime:sender.value completionHandler:^(BOOL finish) {
+        [self.player play];
+    }];
+    
 }
 
 
@@ -146,7 +159,6 @@
     
     return timeString;
 }
-
 
 
 @end
