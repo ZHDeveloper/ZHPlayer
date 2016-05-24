@@ -15,6 +15,12 @@
 
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 
+@property (weak, nonatomic) IBOutlet UILabel *startTimeLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *endTimeLabel;
+
+@property (weak, nonatomic) IBOutlet UISlider *slider;
+
 @end
 
 @implementation ViewController
@@ -38,6 +44,7 @@
 
 - (void)mediaPlaybackIsPreparedToPlayNotification:(NSNotification *)noti {
     NSLog(@"视频准备播放");
+    [self autoRefresh];
 }
 
 - (void)mediaPlaybackStatusFailedNotification:(NSNotification *)noti {
@@ -58,11 +65,6 @@
         NSLog(@"缓冲完成！");
     }
     
-}
-
-- (void)refresh {
-    NSLog(@"%lf---%lf",self.player.currentTime,self.player.duration);
-    [self performSelector:@selector(refresh) withObject:nil afterDelay:1];
 }
 
 #pragma mark - Action
@@ -96,15 +98,54 @@
 }
 
 - (IBAction)play:(id)sender {
-    
+    [self.player play];
 }
 
 - (IBAction)pause:(id)sender {
-    
+    [self.player pause];
 }
 
 
+- (void)autoRefresh {
+    
+    NSTimeInterval duration = self.player.duration;
+    NSInteger intDuration = duration + 0.5;
+    
+    if (intDuration > 0) {
+        self.slider.maximumValue = duration;
+    } else {
+        self.slider.maximumValue = 1.0f;
+    }
+    
+    NSTimeInterval position = self.player.currentTime;
+    NSInteger intPosition = position + 0.5;
+    if (intPosition > 0) {
+        self.slider.value = position;
+    } else {
+        self.slider.value = 0.0f;
+    }
 
+    self.startTimeLabel.text = [self dateStringWiht:position];
+    self.endTimeLabel.text = [self dateStringWiht:duration];
+    
+    [self performSelector:@selector(autoRefresh) withObject:nil afterDelay:1];
+}
+
+- (NSString *)dateStringWiht:(CGFloat)second {
+    
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    
+    if (second/3600 >= 1) {
+        [formatter setDateFormat:@"HH:mm:ss"];
+    } else {
+        [formatter setDateFormat:@"mm:ss"];
+    }
+    
+    NSString *timeString = [formatter stringFromDate:date];
+    
+    return timeString;
+}
 
 
 

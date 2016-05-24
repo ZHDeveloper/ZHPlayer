@@ -60,19 +60,44 @@
                                     <constraint firstAttribute="height" constant="50" id="urb-8a-7Qh"/>
                                 </constraints>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GdC-BB-4fc">
+                                <rect key="frame" x="0.0" y="410" width="34" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIQ-L4-fio">
+                                <rect key="frame" x="286" y="410" width="34" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="I1U-BY-R3L">
+                                <rect key="frame" x="42" y="403" width="236" height="31"/>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sUx-AC-cAe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0OA-Dj-soR"/>
+                            <constraint firstItem="I1U-BY-R3L" firstAttribute="leading" secondItem="GdC-BB-4fc" secondAttribute="trailing" constant="10" id="0eC-XQ-f6q"/>
                             <constraint firstItem="y1f-2K-IhF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2l0-20-Qnl"/>
                             <constraint firstItem="sUx-AC-cAe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="7y8-eQ-nwS"/>
+                            <constraint firstAttribute="trailing" secondItem="YIQ-L4-fio" secondAttribute="trailing" id="B94-dg-LWM"/>
                             <constraint firstAttribute="trailing" secondItem="sUx-AC-cAe" secondAttribute="trailing" id="Fz3-eG-Jcb"/>
+                            <constraint firstItem="YIQ-L4-fio" firstAttribute="leading" secondItem="I1U-BY-R3L" secondAttribute="trailing" constant="10" id="K31-k4-uJS"/>
                             <constraint firstAttribute="trailing" secondItem="y1f-2K-IhF" secondAttribute="trailing" id="NPe-Z7-Ave"/>
+                            <constraint firstItem="YIQ-L4-fio" firstAttribute="top" secondItem="y1f-2K-IhF" secondAttribute="bottom" constant="20" id="TDK-Sx-PQd"/>
+                            <constraint firstItem="I1U-BY-R3L" firstAttribute="centerY" secondItem="GdC-BB-4fc" secondAttribute="centerY" id="VXb-Nz-vY9"/>
                             <constraint firstItem="y1f-2K-IhF" firstAttribute="top" secondItem="sUx-AC-cAe" secondAttribute="bottom" constant="30" id="Xbg-r2-M2m"/>
+                            <constraint firstItem="GdC-BB-4fc" firstAttribute="top" secondItem="y1f-2K-IhF" secondAttribute="bottom" constant="20" id="eGP-Bn-044"/>
+                            <constraint firstItem="GdC-BB-4fc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zIk-Nv-6pT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="contentView" destination="sUx-AC-cAe" id="Xfw-xC-wfw"/>
+                        <outlet property="endTimeLabel" destination="YIQ-L4-fio" id="naM-6F-TBf"/>
+                        <outlet property="slider" destination="I1U-BY-R3L" id="gEh-GD-ivA"/>
+                        <outlet property="startTimeLabel" destination="GdC-BB-4fc" id="GzS-09-oKs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
