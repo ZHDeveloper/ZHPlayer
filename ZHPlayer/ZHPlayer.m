@@ -17,6 +17,9 @@
 
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 
+//防止缓冲时循环调用方法导致无法释放内存
+@property (nonatomic,assign) BOOL stop;
+
 @end
 
 @implementation ZHPlayer
@@ -66,6 +69,21 @@
     [self.player pause];
 }
 
+- (void)shutdown {
+    
+    [self pause];
+    
+    self.stop = YES;
+    
+    [self.view removeFromSuperview];
+    [self.view removeObserver:self forKeyPath:@"frame"];
+    
+    self.playerItem = nil;
+    self.player = nil;
+    self.playerLayer = nil;
+    self.view = nil;
+}
+
 - (void)seekToTime:(NSTimeInterval)position completionHandler:(void (^)(BOOL finish))handeler {
     
     if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay)
@@ -79,6 +97,8 @@
             {
                 handeler(finished);
             }
+            
+            [self play];
             
         }];
         
@@ -99,9 +119,7 @@
                 {
                     if (self.seekTime > 0)
                     {
-                        [self seekToTime:self.seekTime completionHandler:^(BOOL finish) {
-                            [self play];
-                        }];
+                        [self seekToTime:self.seekTime completionHandler:nil];
                     }
                     else
                     {
@@ -153,7 +171,7 @@
         
         [self play];
         
-        if (!self.playerItem.isPlaybackLikelyToKeepUp)
+        if (!self.playerItem.isPlaybackLikelyToKeepUp && !self.stop)
         {
             [self bufferingSomeSecond];
         }
@@ -182,10 +200,6 @@
 
 #pragma mark - Getter&Setter
 - (void)setView:(UIView *)view {
-    if (_view)
-    {
-        [view removeObserver:self forKeyPath:@"frame"];
-    }
     _view = view;
     [view addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -230,6 +244,10 @@
 
 - (void)setLoadState:(MediaLoadState)loadState {
     _loadState = loadState;
+}
+
+- (void)dealloc {
+    NSLog(@"ZHPlayer has dealloc!");
 }
 
 @end

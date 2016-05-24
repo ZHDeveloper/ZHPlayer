@@ -25,7 +25,10 @@ typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
 @interface ZHPlayer : NSObject
 
 - (void)play;
+
 - (void)pause;
+
+- (void)shutdown;
 
 - (void)seekToTime:(NSTimeInterval)time completionHandler:(void(^)(BOOL finish))handeler;
 

@@ -78,25 +78,49 @@
                                     <action selector="sliderAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z0N-11-LVy"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="缓冲进度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-yO-Sde">
+                                <rect key="frame" x="132" y="441" width="56" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YFE-wl-Szb">
+                                <rect key="frame" x="44" y="478" width="232" height="2"/>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ha6-lF-pPf">
+                                <rect key="frame" x="123" y="500" width="75" height="30"/>
+                                <state key="normal" title="销毁播放器"/>
+                                <connections>
+                                    <action selector="destory:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IYV-nW-EqP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="sUx-AC-cAe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0OA-Dj-soR"/>
                             <constraint firstItem="I1U-BY-R3L" firstAttribute="leading" secondItem="GdC-BB-4fc" secondAttribute="trailing" constant="10" id="0eC-XQ-f6q"/>
+                            <constraint firstItem="YFE-wl-Szb" firstAttribute="trailing" secondItem="I1U-BY-R3L" secondAttribute="trailing" id="1Vb-08-daP"/>
                             <constraint firstItem="y1f-2K-IhF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2l0-20-Qnl"/>
                             <constraint firstItem="sUx-AC-cAe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="7y8-eQ-nwS"/>
                             <constraint firstAttribute="trailing" secondItem="YIQ-L4-fio" secondAttribute="trailing" id="B94-dg-LWM"/>
                             <constraint firstAttribute="trailing" secondItem="sUx-AC-cAe" secondAttribute="trailing" id="Fz3-eG-Jcb"/>
+                            <constraint firstItem="ha6-lF-pPf" firstAttribute="top" secondItem="YFE-wl-Szb" secondAttribute="bottom" constant="20" id="JbL-5v-VcV"/>
                             <constraint firstItem="YIQ-L4-fio" firstAttribute="leading" secondItem="I1U-BY-R3L" secondAttribute="trailing" constant="10" id="K31-k4-uJS"/>
                             <constraint firstAttribute="trailing" secondItem="y1f-2K-IhF" secondAttribute="trailing" id="NPe-Z7-Ave"/>
+                            <constraint firstItem="aMz-yO-Sde" firstAttribute="top" secondItem="I1U-BY-R3L" secondAttribute="bottom" constant="8" id="R3h-iL-S1u"/>
                             <constraint firstItem="YIQ-L4-fio" firstAttribute="top" secondItem="y1f-2K-IhF" secondAttribute="bottom" constant="20" id="TDK-Sx-PQd"/>
+                            <constraint firstItem="ha6-lF-pPf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="UB6-Cf-gFr"/>
+                            <constraint firstItem="YFE-wl-Szb" firstAttribute="leading" secondItem="I1U-BY-R3L" secondAttribute="leading" id="V6c-JD-p8Q"/>
                             <constraint firstItem="I1U-BY-R3L" firstAttribute="centerY" secondItem="GdC-BB-4fc" secondAttribute="centerY" id="VXb-Nz-vY9"/>
                             <constraint firstItem="y1f-2K-IhF" firstAttribute="top" secondItem="sUx-AC-cAe" secondAttribute="bottom" constant="30" id="Xbg-r2-M2m"/>
                             <constraint firstItem="GdC-BB-4fc" firstAttribute="top" secondItem="y1f-2K-IhF" secondAttribute="bottom" constant="20" id="eGP-Bn-044"/>
+                            <constraint firstItem="YFE-wl-Szb" firstAttribute="top" secondItem="aMz-yO-Sde" secondAttribute="bottom" constant="20" id="sC3-mm-8t2"/>
+                            <constraint firstItem="aMz-yO-Sde" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vWI-Og-0rn"/>
                             <constraint firstItem="GdC-BB-4fc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zIk-Nv-6pT"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="cacheProgress" destination="YFE-wl-Szb" id="05Q-is-Uy5"/>
                         <outlet property="contentView" destination="sUx-AC-cAe" id="Xfw-xC-wfw"/>
                         <outlet property="endTimeLabel" destination="YIQ-L4-fio" id="naM-6F-TBf"/>
                         <outlet property="slider" destination="I1U-BY-R3L" id="gEh-GD-ivA"/>

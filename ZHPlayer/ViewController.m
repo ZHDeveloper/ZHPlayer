@@ -21,6 +21,8 @@
 
 @property (weak, nonatomic) IBOutlet UISlider *slider;
 
+@property (weak, nonatomic) IBOutlet UIProgressView *cacheProgress;
+
 @end
 
 @implementation ViewController
@@ -75,6 +77,10 @@
 #pragma mark - Action
 - (IBAction)start:(id)sender {
     
+    if (self.player) {
+        [self destory:nil];
+    }
+    
     [self initPlayerWithSeekTime:0];
     
 }
@@ -99,6 +105,10 @@
 
 - (IBAction)SecondStart:(id)sender {
     
+    if (self.player) {
+        [self destory:nil];
+    }
+
     [self initPlayerWithSeekTime:90];
 }
 
@@ -112,12 +122,14 @@
 
 - (IBAction)sliderAction:(UISlider *)sender {
     
-    [self.player seekToTime:sender.value completionHandler:^(BOOL finish) {
-        [self.player play];
-    }];
+    [self.player seekToTime:sender.value completionHandler:nil];
     
 }
 
+- (IBAction)destory:(id)sender {
+    [self.player shutdown];
+    self.player = nil;
+}
 
 - (void)autoRefresh {
     
@@ -140,6 +152,10 @@
 
     self.startTimeLabel.text = [self dateStringWiht:position];
     self.endTimeLabel.text = [self dateStringWiht:duration];
+    
+    NSTimeInterval playableDuration = self.player.playableDuration;
+    
+    self.cacheProgress.progress = playableDuration/duration;
     
     [self performSelector:@selector(autoRefresh) withObject:nil afterDelay:1];
 }
