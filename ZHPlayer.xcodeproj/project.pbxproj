@@ -15,6 +15,8 @@
 		530CD0171CF428AF007E32F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 530CD0151CF428AF007E32F0 /* LaunchScreen.storyboard */; };
 		530CD0221CF428AF007E32F0 /* ZHPlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530CD0211CF428AF007E32F0 /* ZHPlayerTests.m */; };
 		530CD02D1CF428AF007E32F0 /* ZHPlayerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 530CD02C1CF428AF007E32F0 /* ZHPlayerUITests.m */; };
+		530CD03D1CF42953007E32F0 /* ZHPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 530CD03C1CF42953007E32F0 /* ZHPlayerView.m */; };
+		530CD0421CF42F3B007E32F0 /* ZHPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 530CD0411CF42F3B007E32F0 /* ZHPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,10 @@
 		530CD0281CF428AF007E32F0 /* ZHPlayerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZHPlayerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		530CD02C1CF428AF007E32F0 /* ZHPlayerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZHPlayerUITests.m; sourceTree = "<group>"; };
 		530CD02E1CF428AF007E32F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		530CD03B1CF42953007E32F0 /* ZHPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPlayerView.h; sourceTree = "<group>"; };
+		530CD03C1CF42953007E32F0 /* ZHPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPlayerView.m; sourceTree = "<group>"; };
+		530CD0401CF42F3B007E32F0 /* ZHPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHPlayer.h; sourceTree = "<group>"; };
+		530CD0411CF42F3B007E32F0 /* ZHPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +109,10 @@
 			children = (
 				530CD00A1CF428AF007E32F0 /* AppDelegate.h */,
 				530CD00B1CF428AF007E32F0 /* AppDelegate.m */,
+				530CD03B1CF42953007E32F0 /* ZHPlayerView.h */,
+				530CD03C1CF42953007E32F0 /* ZHPlayerView.m */,
+				530CD0401CF42F3B007E32F0 /* ZHPlayer.h */,
+				530CD0411CF42F3B007E32F0 /* ZHPlayer.m */,
 				530CD00D1CF428AF007E32F0 /* ViewController.h */,
 				530CD00E1CF428AF007E32F0 /* ViewController.m */,
 				530CD0101CF428AF007E32F0 /* Main.storyboard */,
@@ -272,7 +282,9 @@
 			files = (
 				530CD00F1CF428AF007E32F0 /* ViewController.m in Sources */,
 				530CD00C1CF428AF007E32F0 /* AppDelegate.m in Sources */,
+				530CD0421CF42F3B007E32F0 /* ZHPlayer.m in Sources */,
 				530CD0091CF428AF007E32F0 /* main.m in Sources */,
+				530CD03D1CF42953007E32F0 /* ZHPlayerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
