@@ -1,25 +1,83 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sUx-AC-cAe">
+                                <rect key="frame" x="0.0" y="70" width="320" height="240"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="w2b-vI-Uyu"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="y1f-2K-IhF">
+                                <rect key="frame" x="0.0" y="340" width="320" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dC4-l8-0E9">
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="50"/>
+                                        <state key="normal" title="开始"/>
+                                        <connections>
+                                            <action selector="start:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3pO-dO-cMq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbW-el-mPM">
+                                        <rect key="frame" x="80" y="0.0" width="80" height="50"/>
+                                        <state key="normal" title="90秒开始"/>
+                                        <connections>
+                                            <action selector="SecondStart:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LKX-AS-6te"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Cy-bR-Art">
+                                        <rect key="frame" x="160" y="0.0" width="80" height="50"/>
+                                        <state key="normal" title="播放"/>
+                                        <connections>
+                                            <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qe4-K7-crJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GxV-Ao-1yi">
+                                        <rect key="frame" x="240" y="0.0" width="80" height="50"/>
+                                        <state key="normal" title="暂停"/>
+                                        <connections>
+                                            <action selector="pause:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FzP-dR-ZUI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="urb-8a-7Qh"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sUx-AC-cAe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0OA-Dj-soR"/>
+                            <constraint firstItem="y1f-2K-IhF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2l0-20-Qnl"/>
+                            <constraint firstItem="sUx-AC-cAe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="7y8-eQ-nwS"/>
+                            <constraint firstAttribute="trailing" secondItem="sUx-AC-cAe" secondAttribute="trailing" id="Fz3-eG-Jcb"/>
+                            <constraint firstAttribute="trailing" secondItem="y1f-2K-IhF" secondAttribute="trailing" id="NPe-Z7-Ave"/>
+                            <constraint firstItem="y1f-2K-IhF" firstAttribute="top" secondItem="sUx-AC-cAe" secondAttribute="bottom" constant="30" id="Xbg-r2-M2m"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="contentView" destination="sUx-AC-cAe" id="Xfw-xC-wfw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="149.33333333333334" y="319.5"/>
         </scene>
     </scenes>
 </document>

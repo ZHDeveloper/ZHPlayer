@@ -66,6 +66,26 @@
     [self.player pause];
 }
 
+- (void)seekToTime:(NSTimeInterval)position completionHandler:(void (^)(BOOL finish))handeler {
+    
+    if (self.player.currentItem.status == AVPlayerItemStatusReadyToPlay)
+    {
+        
+        CMTime time = CMTimeMake(position, 1);
+        
+        [self.player seekToTime:time toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:^(BOOL finished) {
+            
+            if (handeler)
+            {
+                handeler(finished);
+            }
+            
+        }];
+        
+    }
+    
+}
+
 #pragma mark - KVO
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context {
     
@@ -77,7 +97,16 @@
             {
                 if (self.shouldAutoplay)
                 {
-                    [self play];
+                    if (self.seekTime > 0)
+                    {
+                        [self seekToTime:self.seekTime completionHandler:^(BOOL finish) {
+                            [self play];
+                        }];
+                    }
+                    else
+                    {
+                        [self play];
+                    }
                 }
                 [self postNotification:MediaPlaybackIsPreparedToPlayNotification];
             }

@@ -24,32 +24,29 @@ typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
 
 @interface ZHPlayer : NSObject
 
-//- (void)prepareToPlay;
 - (void)play;
 - (void)pause;
-//- (void)stop;
-//- (BOOL)isPlaying;
-//- (void)shutdown;
-//- (void)setPauseInBackground:(BOOL)pause;
+
+- (void)seekToTime:(NSTimeInterval)time completionHandler:(void(^)(BOOL finish))handeler;
 
 //是否自动播放
-
 - (void)initPlayerWith:(NSURL *)url;
 
 @property(nonatomic) BOOL shouldAutoplay;
+
+//当shouldAutoplay为YES有效
+@property (nonatomic,assign) NSTimeInterval seekTime;
+
 @property(nonatomic, readonly)  UIView *view;
+
 @property(nonatomic, readonly)  NSTimeInterval currentTime;
+
 @property(nonatomic, readonly)  NSTimeInterval duration;
+
 @property(nonatomic, readonly)  NSTimeInterval playableDuration;
 
-//@property(nonatomic, readonly)  BOOL isPreparedToPlay;
 @property(nonatomic, readonly)  MeidaPlaybackState playbackState;
 @property(nonatomic, readonly)  MediaLoadState loadState;
-
-//@property(nonatomic, readonly) int64_t numberOfBytesTransferred;
-//
-//@property(nonatomic, readonly) CGSize naturalSize;
-//@property(nonatomic) IJKMPMovieScalingMode scalingMode;
 
 @end
 
