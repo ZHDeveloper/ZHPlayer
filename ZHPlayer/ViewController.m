@@ -39,6 +39,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlaybackStatusFailedNotification:) name:MediaPlaybackStatusFailedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meidaPlayerLoadStateDidChangeNotification:) name:MediaPlayerLoadStateDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerPlaybackDidFinishNotification:) name:MediaPlayerPlaybackDidFinishNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerPlaybackStatusDidChangeNotification:) name:MediaPlayerPlaybackStatusDidChangeNotification object:nil];
 }
 
 - (void)removeNotifications {
@@ -73,6 +74,32 @@
 
 - (void)mediaPlayerPlaybackDidFinishNotification:(NSNotification *)noti {
     NSLog(@"播放结束");
+}
+
+- (void)mediaPlayerPlaybackStatusDidChangeNotification:(NSNotification *)noti {
+    
+    if (!self.player) return;
+    
+    if (self.player.playbackState == MediaPlaybackStateReadyToPlay)
+    {
+        NSLog(@"准备播放");
+    }
+    else if (self.player.playbackState == MediaPlaybackStatePlaying)
+    {
+        NSLog(@"正在播放");
+    }
+    else if (self.player.playbackState == MediaPlaybackStatePaused)
+    {
+        NSLog(@"暂停中");
+    }
+    else if (self.player.playbackState == MediaPlaybackStateInterrupted)
+    {
+        NSLog(@"中断中");
+    }
+    else if (self.player.playbackState == MediaPlaybackStateSeeking)
+    {
+        NSLog(@"快进中");
+    }
 }
 
 #pragma mark - Action

@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, MediaLoadState)
 typedef NS_ENUM(NSUInteger, MediaPlaybackState)
 {
     MediaPlaybackStateStopped,//未开始
+    MediaPlaybackStateReadyToPlay,
     MediaPlaybackStatePlaying,
     MediaPlaybackStatePaused,
     MediaPlaybackStateInterrupted,

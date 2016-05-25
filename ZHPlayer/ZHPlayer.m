@@ -100,7 +100,7 @@
             
             [self play];
             
-            self.playbackState = MediaPlaybackStateBuffering;
+            self.playbackState = MediaPlaybackStateSeeking;
         }];
         
     }
@@ -116,17 +116,7 @@
         {
             if (self.playerItem.status == AVPlayerItemStatusReadyToPlay)
             {
-                if (self.shouldAutoplay)
-                {
-                    [self play];
-
-                    if (self.seekTime > 0)
-                    {
-                        [self seekToTime:self.seekTime completionHandler:nil];
-                    }
-                }
-                
-                [self postNotification:MediaPlaybackIsPreparedToPlayNotification];
+                [self playerItemStatusReadyToPlay];
             }
             else if (self.playerItem.status == AVPlayerItemStatusFailed)
             {//视频加载失败
@@ -150,6 +140,7 @@
             if (self.playerItem.playbackLikelyToKeepUp && self.loadState == MediaLoadStateStalled)
             {
                 self.loadState = MediaLoadStatePlaythroughOK;
+                self.playbackState = MediaPlaybackStatePlaying;
             }
         }
         
@@ -159,6 +150,25 @@
         self.playerLayer.frame = self.view.bounds;
     }
 
+}
+
+- (void)playerItemStatusReadyToPlay {
+    
+    if (self.playbackState == MediaPlaybackStateSeeking) return;
+    
+    self.playbackState = MediaPlaybackStateReadyToPlay;
+    
+    if (self.shouldAutoplay)
+    {
+        [self play];
+        
+        if (self.seekTime > 0)
+        {
+            [self seekToTime:self.seekTime completionHandler:nil];
+        }
+    }
+    //发送通知准备播放
+    [self postNotification:MediaPlaybackIsPreparedToPlayNotification];
 }
 
 - (void)bufferingSomeSecond {
