@@ -173,6 +173,7 @@
     
     NSTimeInterval position = self.player.currentTime;
     NSInteger intPosition = position + 0.5;
+    
     if (intPosition > 0) {
         self.slider.value = position;
     } else {
@@ -203,6 +204,23 @@
     NSString *timeString = [formatter stringFromDate:date];
     
     return timeString;
+}
+
+- (UIImageView *)dummyViewOfView:(UIView *)view {
+    
+    CGSize viewSize = view.bounds.size;
+    
+    UIGraphicsBeginImageContextWithOptions(viewSize, NO, 1.0);
+    
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, viewSize.width, viewSize.height)];
+    
+    imageView.image = image;
+    
+    return imageView;
 }
 
 
