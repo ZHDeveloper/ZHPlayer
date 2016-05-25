@@ -160,12 +160,14 @@
     
     if (self.shouldAutoplay)
     {
-        [self play];
-        
         if (self.seekTime > 0)
         {
             [self seekToTime:self.seekTime completionHandler:nil];
+            return;
         }
+        
+        [self play];
+
     }
 }
 
