@@ -62,10 +62,18 @@
 
 #pragma mark - Operation
 - (void)play {
+    
     [self.player play];
+    
 }
 
 - (void)pause {
+    
+    if (self.playbackState != MediaPlaybackStatePaused)
+    {
+        self.playbackState = MediaPlaybackStatePaused;
+    }
+    
     [self.player pause];
 }
 
