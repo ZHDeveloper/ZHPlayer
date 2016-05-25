@@ -15,11 +15,13 @@ typedef NS_ENUM(NSUInteger, MediaLoadState)
     MediaLoadStateStalled
 };
 
-typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
+typedef NS_ENUM(NSUInteger, MediaPlaybackState)
 {
-    MeidaPlaybackStateUnknow,
-    MeidaPlaybackStatePlay,
-    MeidaPlaybackStatePause,
+    MediaPlaybackStateStopped,//未开始
+    MediaPlaybackStatePlaying,
+    MediaPlaybackStatePaused,
+    MediaPlaybackStateInterrupted,
+    MediaPlaybackStateSeeking
 };
 
 @interface ZHPlayer : NSObject
@@ -38,7 +40,7 @@ typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
 @property(nonatomic) BOOL shouldAutoplay;
 
 //当shouldAutoplay为YES有效
-@property (nonatomic,assign) NSTimeInterval seekTime;
+@property(nonatomic, assign) NSTimeInterval seekTime;
 
 @property(nonatomic, readonly)  UIView *view;
 
@@ -48,9 +50,11 @@ typedef NS_ENUM(NSUInteger, MeidaPlaybackState)
 
 @property(nonatomic, readonly)  NSTimeInterval playableDuration;
 
-@property(nonatomic, readonly)  MeidaPlaybackState playbackState;
-
+//加载状态
 @property(nonatomic, readonly)  MediaLoadState loadState;
+
+//播放状态
+@property(nonatomic, readonly)  MediaPlaybackState playbackState;
 
 @end
 
@@ -58,3 +62,5 @@ extern NSString *const MediaPlaybackIsPreparedToPlayNotification;
 extern NSString *const MediaPlaybackStatusFailedNotification;
 extern NSString *const MediaPlayerLoadStateDidChangeNotification;
 extern NSString *const MediaPlayerPlaybackDidFinishNotification;
+extern NSString *const MediaPlayerPlaybackStatusDidChangeNotification;
+

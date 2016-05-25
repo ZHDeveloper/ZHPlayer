@@ -66,6 +66,7 @@
     else if (self.player && self.player.loadState == MediaLoadStatePlaythroughOK)
     {
         NSLog(@"缓冲完成！");
+        [self autoRefresh];
     }
     
 }
@@ -84,6 +85,8 @@
     [self initPlayerWithSeekTime:0];
     
 }
+
+
 
 - (void)initPlayerWithSeekTime:(NSTimeInterval)time {
     
@@ -120,7 +123,15 @@
     [self.player pause];
 }
 
-- (IBAction)sliderAction:(UISlider *)sender {
+- (IBAction)slideBegain:(UISlider *)sender {
+    [self cancelAutoRefresh];
+}
+
+- (IBAction)sliderValueChange:(UISlider *)sender {
+    
+}
+
+- (IBAction)slideEndAction:(UISlider *)sender {
     
     [self.player seekToTime:sender.value completionHandler:nil];
     
@@ -129,6 +140,10 @@
 - (IBAction)destory:(id)sender {
     [self.player shutdown];
     self.player = nil;
+}
+
+- (void)cancelAutoRefresh {
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(autoRefresh) object:nil];
 }
 
 - (void)autoRefresh {

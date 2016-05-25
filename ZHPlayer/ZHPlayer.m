@@ -100,6 +100,7 @@
             
             [self play];
             
+            self.playbackState = MediaPlaybackStateBuffering;
         }];
         
     }
@@ -117,15 +118,14 @@
             {
                 if (self.shouldAutoplay)
                 {
+                    [self play];
+
                     if (self.seekTime > 0)
                     {
                         [self seekToTime:self.seekTime completionHandler:nil];
                     }
-                    else
-                    {
-                        [self play];
-                    }
                 }
+                
                 [self postNotification:MediaPlaybackIsPreparedToPlayNotification];
             }
             else if (self.playerItem.status == AVPlayerItemStatusFailed)
@@ -142,7 +142,6 @@
             if (self.playerItem.playbackBufferEmpty)
             {
                 self.loadState = MediaLoadStateStalled;
-                [self postNotification:MediaPlayerLoadStateDidChangeNotification];
                 [self bufferingSomeSecond];
             }
         }
@@ -151,7 +150,6 @@
             if (self.playerItem.playbackLikelyToKeepUp && self.loadState == MediaLoadStateStalled)
             {
                 self.loadState = MediaLoadStatePlaythroughOK;
-                [self postNotification:MediaPlayerLoadStateDidChangeNotification];
             }
         }
         
@@ -244,6 +242,13 @@
 
 - (void)setLoadState:(MediaLoadState)loadState {
     _loadState = loadState;
+    [self postNotification:MediaPlayerLoadStateDidChangeNotification];
+}
+
+- (void)setPlaybackState:(MediaPlaybackState)playbackState {
+    _playbackState = playbackState;
+    //发送通知，播放状态发生改变
+    [self postNotification:MediaPlayerPlaybackStatusDidChangeNotification];
 }
 
 - (void)dealloc {
@@ -256,3 +261,4 @@ NSString *const MediaPlaybackIsPreparedToPlayNotification = @"MediaPlaybackIsPre
 NSString *const MediaPlaybackStatusFailedNotification = @"MediaPlaybackStatusFailedNotification";
 NSString *const MediaPlayerLoadStateDidChangeNotification = @"MediaPlayerLoadStateDidChangeNotification";
 NSString *const MediaPlayerPlaybackDidFinishNotification = @"MediaPlayerPlaybackDidFinishNotification";
+NSString *const MediaPlayerPlaybackStatusDidChangeNotification = @"MediaPlayerPlaybackStatusDidChangeNotification";
