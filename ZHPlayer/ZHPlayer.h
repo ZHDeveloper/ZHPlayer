@@ -59,7 +59,6 @@ typedef NS_ENUM(NSUInteger, MediaPlaybackState)
 
 @end
 
-extern NSString *const MediaPlaybackIsPreparedToPlayNotification;
 extern NSString *const MediaPlaybackStatusFailedNotification;
 extern NSString *const MediaPlayerLoadStateDidChangeNotification;
 extern NSString *const MediaPlayerPlaybackDidFinishNotification;

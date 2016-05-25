@@ -75,9 +75,8 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="I1U-BY-R3L">
                                 <rect key="frame" x="42" y="403" width="236" height="31"/>
                                 <connections>
-                                    <action selector="slideBegain:" destination="BYZ-38-t0r" eventType="valueChanged" id="HFB-Fo-Ayj"/>
-                                    <action selector="slideEndAction:" destination="BYZ-38-t0r" eventType="valueChanged" id="6oW-z1-Zol"/>
-                                    <action selector="sliderValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="TBz-Um-UMc"/>
+                                    <action selector="slideBegain:" destination="BYZ-38-t0r" eventType="touchDown" id="GNn-2q-C1t"/>
+                                    <action selector="slideEndAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dYc-So-vcw"/>
                                 </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="缓冲进度" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aMz-yO-Sde">

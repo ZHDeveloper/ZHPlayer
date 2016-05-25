@@ -140,8 +140,8 @@
             if (self.playerItem.playbackLikelyToKeepUp && self.loadState == MediaLoadStateStalled)
             {
                 self.loadState = MediaLoadStatePlaythroughOK;
-                self.playbackState = MediaPlaybackStatePlaying;
             }
+            self.playbackState = MediaPlaybackStatePlaying;
         }
         
     }
@@ -167,8 +167,6 @@
             [self seekToTime:self.seekTime completionHandler:nil];
         }
     }
-    //发送通知准备播放
-    [self postNotification:MediaPlaybackIsPreparedToPlayNotification];
 }
 
 - (void)bufferingSomeSecond {
@@ -267,7 +265,6 @@
 
 @end
 
-NSString *const MediaPlaybackIsPreparedToPlayNotification = @"MediaPlaybackIsPreparedToPlayNotification";
 NSString *const MediaPlaybackStatusFailedNotification = @"MediaPlaybackStatusFailedNotification";
 NSString *const MediaPlayerLoadStateDidChangeNotification = @"MediaPlayerLoadStateDidChangeNotification";
 NSString *const MediaPlayerPlaybackDidFinishNotification = @"MediaPlayerPlaybackDidFinishNotification";

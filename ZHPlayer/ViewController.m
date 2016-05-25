@@ -35,7 +35,6 @@
 
 #pragma mark - Notification
 - (void)installNotifications {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlaybackIsPreparedToPlayNotification:) name:MediaPlaybackIsPreparedToPlayNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlaybackStatusFailedNotification:) name:MediaPlaybackStatusFailedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(meidaPlayerLoadStateDidChangeNotification:) name:MediaPlayerLoadStateDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mediaPlayerPlaybackDidFinishNotification:) name:MediaPlayerPlaybackDidFinishNotification object:nil];
@@ -44,11 +43,6 @@
 
 - (void)removeNotifications {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)mediaPlaybackIsPreparedToPlayNotification:(NSNotification *)noti {
-    NSLog(@"视频准备播放");
-    [self autoRefresh];
 }
 
 - (void)mediaPlaybackStatusFailedNotification:(NSNotification *)noti {
@@ -83,6 +77,7 @@
     if (self.player.playbackState == MediaPlaybackStateReadyToPlay)
     {
         NSLog(@"准备播放");
+        [self autoRefresh];
     }
     else if (self.player.playbackState == MediaPlaybackStatePlaying)
     {
@@ -112,8 +107,6 @@
     [self initPlayerWithSeekTime:0];
     
 }
-
-
 
 - (void)initPlayerWithSeekTime:(NSTimeInterval)time {
     
@@ -150,18 +143,12 @@
     [self.player pause];
 }
 
-- (IBAction)slideBegain:(UISlider *)sender {
+- (IBAction)slideBegain:(id)sender {
     [self cancelAutoRefresh];
 }
 
-- (IBAction)sliderValueChange:(UISlider *)sender {
-    
-}
-
 - (IBAction)slideEndAction:(UISlider *)sender {
-    
     [self.player seekToTime:sender.value completionHandler:nil];
-    
 }
 
 - (IBAction)destory:(id)sender {
