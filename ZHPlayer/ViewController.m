@@ -118,8 +118,8 @@
     
     player.view.frame = self.contentView.bounds;
     player.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-
-    [player initPlayerWith:[NSURL URLWithString:@"http://software.swwy.com/Oz08NDRyNiY.m3u8"]];
+    
+    [player initPlayerWith:[NSURL URLWithString:@"http://v1.mycs.cn/48/4893/27843/Oz0zOD5yNiI.mp4"]];
     
     player.shouldAutoplay = YES;
     
@@ -132,7 +132,7 @@
         [self destory:nil];
     }
 
-    [self initPlayerWithSeekTime:90];
+    [self initPlayerWithSeekTime:95];
 }
 
 - (IBAction)play:(id)sender {
